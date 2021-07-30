@@ -15,14 +15,6 @@ export function activate(context: vscode.ExtensionContext) {
 		})
 	);
 
-	// context.subscriptions.push(
-	// 	vscode.commands.registerCommand('catCoding.doRefactor', () => {
-	// 		if (CatCodingPanel.currentPanel) {
-	// 			CatCodingPanel.currentPanel.doRefactor();
-	// 		}
-	// 	})
-	// );
-
 	if (vscode.window.registerWebviewPanelSerializer) {
 		// Make sure we register a serializer in activation event
 		vscode.window.registerWebviewPanelSerializer(CatCodingPanel.viewType, {
@@ -178,15 +170,18 @@ class CatCodingPanel {
 		// Local path to css styles
 		const styleResetPath = vscode.Uri.joinPath(this._extensionUri, 'src', 'css', 'reset.css');
 		const stylesPathMainPath = vscode.Uri.joinPath(this._extensionUri, 'src', 'css', 'vscode.css');
+		const stylesHeroPath = vscode.Uri.joinPath(this._extensionUri, 'src', 'css', 'hero.css');
 
 		// Uri to load styles into webview
 		const stylesResetUri = webview.asWebviewUri(styleResetPath);
 		const stylesMainUri = webview.asWebviewUri(stylesPathMainPath);
-		
-		// HTML path
-		let catPath = path.join('src', 'html', 'cat.html')
+		const stylesHeroUri = webview.asWebviewUri(stylesHeroPath);
 
-		let catHtml: string = readFileSync(catPath, {encoding:'utf8'});
+		// HTML path
+		let heroPath = path.join('src', 'html', 'hero.html');
+
+		// Read HTML
+		let heroHtml: string = readFileSync(heroPath, {encoding:'utf8'});
 
 		// Use a nonce to only allow specific scripts to be run
 		const nonce = getNonce();
@@ -203,11 +198,11 @@ class CatCodingPanel {
 				<meta name="viewport" content="width=device-width, initial-scale=1.0">
 				<link href="${stylesResetUri}" rel="stylesheet">
 				<link href="${stylesMainUri}" rel="stylesheet">
+				<link href="${stylesHeroUri}" rel="stylesheet">
 				<title>Welcome</title>
 			</head>
 			<body>
-				${catHtml}
-				<h1 id="lines-of-code-counter">0</h1>
+				${heroHtml}
 				<script nonce="${nonce}" src="${scriptUri}"></script>
 			</body>
 			</html>`;

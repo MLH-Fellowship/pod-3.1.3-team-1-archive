@@ -3,6 +3,7 @@
 	"displayName": "hello",
 	"description": "",
 	"version": "0.0.1",
+	"publisher": "test-3131",
 	"engines": {
 		"vscode": "^1.58.0"
 	},
@@ -10,7 +11,7 @@
 		"Other"
 	],
 	"activationEvents": [
-        "onCommand:hello.helloWorld"
+		"*"
 	],
 	"main": "./out/extension.js",
 	"contributes": {

@@ -7,12 +7,14 @@
 }
 
 body {
-	padding: 0 var(--container-padding);
+	padding: 0 ;
 	color: var(--vscode-foreground);
 	font-size: var(--vscode-font-size);
 	font-weight: var(--vscode-font-weight);
 	font-family: var(--vscode-font-family);
 	background-color: var(--vscode-editor-background);
+	margin: 0;
+	text-align: center;
 }
 
 ol,
@@ -28,6 +30,7 @@ form > * {
 
 *:focus {
 	outline-color: var(--vscode-focusBorder) !important;
+	box-sizing: border-box;
 }
 
 a {
